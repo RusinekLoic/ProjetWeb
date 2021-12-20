@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="fr">
+
+    <head>
+        <meta charset="utf-8">
+        <title> Formulaire </title>
+        <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/minecraftia" type="text/css"/>
+        <link rel="stylesheet" href="style_global.css">
+        <link rel="stylesheet" href="style_form.css">
+    </head>
+
+    <body>
+        <form method="post">
+            <div>
+                <label for="Pseudo"> <strong>Pseudo</strong><br> </label>
+                <input type="text" id="Pseudo" name="user_name" placeholder="Pseudo">
+            </div>
+
+            <div>
+                <p> <strong> Model d'usine: </strong>
+                    <select class="Model"> 
+                        <optgroup label="Model d'usine" class="opt">
+                            <option class="opt">AFK</option>
+                            <option class="opt">Semi AFK</option>
+                        </optgroup>
+                    </select>
+                </p>
+            </div>
+            <div>
+                <p> <strong> Monde: </strong>
+                    <input type="checkbox" checked id="Overworld" name="Overwold"> Overworld
+                    <input type="checkbox" checked id="all_dimensions" name="all_dimensions"> Toutes dimensensions
+                </p>
+            </div>
+
+            <h2>Usine</h2>
+            
+                <div>
+                    <p><strong>Ressources :</strong>
+                        <select class="Ressources">
+                            <option>Slime</option>
+                            <option>A venir</option>
+                        </select>
+                    </p>
+                </div>
+
+                <div>
+                    <p><strong>Difficulté :</strong>
+                        <select class="Difficulté">
+                            <option>Facile</option>
+                            <option>Moyen</option>
+                            <option>Difficile</option>
+                        </select>
+                    </p>
+                </div>
+
+                <div>
+                    <p><strong>Efficacité :</strong>
+                        <select class="Efficacité">
+                            <option>Faible</option>
+                            <option>Moyenne</option>
+                            <option>Forte</option>
+                        </select>
+                    </p>
+                </div>
+
+
+
+                <button type="submit" class="btn" onclick="ajouter()">Ajouter</button>
+                <button type="button" class="btn"  onclick="supprimer()">Supprimer</button>
+                <button type="reset"  class="btn" onclick="annuler()">Annuler</button>
+        </form>
+    
+
+
+        <main>
+            <div class="box">
+         
+                <table class="datatable">
+                <thead>
+                    <tr>
+                      <th>Pseudo</th>
+                      <th>Adresse de livraison</th>
+                      <th>Mode de livraison</th>
+                      <th>Entrée</th>
+                      <th>Plat</th>
+                      <th>Dessert</th>
+                    </tr>
+                </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+              </div>
+        </main>
+
+        <script>
+                // Ex2)1)
+            var newCommandForm = document.forms.newCommand; 
+
+
+        function ajouter(){
+            //alert(newCommandForm.elements.prenom.value)
+            // Ex2)2)
+            console.log(newCommandForm.elements.nom.value)
+            console.log(newCommandForm.elements.adresse.value)
+
+            // Ex2)3)
+            const newItem = document.createElement('tr')
+            const nomTd = document.createElement('td')
+            const adresseTd = document.createElement('td')
+            const modeLivraisonTd = document.createElement('td')
+            const entreeTd = document.createElement('td')
+            const platTd = document.createElement('td')
+            const desserTd = document.createElement('td')
+            nomTd.textContent = document.newCommand.nom.value
+            adresseTd.textContent = document.newCommand.adresse.value
+            modeLivraisonTd.textContent = document.newCommand.livraison.value
+            entreeTd.textContent = document.newCommand.entree.value
+            platTd.textContent = document.newCommand.plat.value
+            desserTd.textContent = document.newCommand.dessert.value
+            
+            //const selectEntree = document.getElementById("entreeId");
+            //const valeurselectionnee = selectEntree.options[selectEntree.selectedIndex].value;
+            //const textselectionne = selectEntree.options[selectEntree.selectedIndex].text;
+        
+            console.log(entreeTd.textContent)
+            console.log(platTd.textContent)
+            console.log(desserTd.textContent)
+
+            /*Ex2)3)vii)   */
+
+            if (!document.newCommand.nom.checkValidity() ||
+                !document.newCommand.prenom.checkValidity() ||
+                !document.newCommand.adresse.checkValidity() ||
+                !document.newCommand.email.checkValidity()
+                ) {
+                    return
+                }
+            
+            // Ex2)3)iv)
+            //const table = document.querySelector('table')
+            newItem.append(nomTd, adresseTd, modeLivraisonTd, entreeTd, platTd, desserTd)
+
+            /* le premier élément dans le document qui contient la classe "datatable" est retourné*/
+            const table = document.querySelector('.datatable tbody')
+            /*  Ex2)3)vi) */
+            table.appendChild(newItem)
+
+        }
+
+            // supprimer toutes les lignes du tableau
+            //ex2)3)viii)
+        function supprimer() {
+                const tbody = document.querySelector('.datatable tbody' )
+                while (tbody.firstChild) {
+                tbody.removeChild(tbody.firstChild)
+                }
+            
+        }
+
+        </script>
+
+
+        <p><a href="Projet.html" class="RAccueil">Revenir à l'accueil</a></p>
+    </body>
